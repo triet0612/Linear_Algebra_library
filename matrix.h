@@ -1,3 +1,4 @@
+#include <iostream>
 using namespace std;
 
 class MATRIX{
@@ -22,6 +23,6 @@ class MATRIX{
         bool Invert(MATRIX &Target);
         bool IsSquare(MATRIX Target);
         int Determinant(MATRIX Target);
-        void Transpose(MATRIX &Target);
+        void Transpose();
         MATRIX ReduceEchelon(MATRIX Target);
 };

@@ -1,6 +1,6 @@
 #include <matrix.h>
 
-//constructor
+//constructor-destructor
 MATRIX::MATRIX(int _in_row, int _in_col){
     row = _in_row;
     col = _in_col;
@@ -10,7 +10,6 @@ MATRIX::MATRIX(int _in_row, int _in_col){
     }
     return;
 }
-//destructor
 MATRIX::~MATRIX(){
     for (int i = 0; i < row; i++){
         delete[]data[i];
@@ -18,14 +17,7 @@ MATRIX::~MATRIX(){
     delete[]data;
 }
 
-int MATRIX::rowA_colB(float **A, float **B, int row, int col){
-    int ans = 0;
-    for (int i = 0; i < row; i++){
-        ans += A[row][i]*B[i][col];
-    }
-    return ans;
-}
-
+//operators
 MATRIX MATRIX::operator+(MATRIX _sec_matrix){
             if (this->row != _sec_matrix.col)
                 return *this;
@@ -87,3 +79,41 @@ MATRIX MATRIX::operator*(MATRIX _sec_matrix){
     }
     return ans;
 }        
+
+//private functions
+int MATRIX::rowA_colB(float **A, float **B, int row, int col){
+    int ans = 0;
+    for (int i = 0; i < row; i++){
+        ans += A[row][i]*B[i][col];
+    }
+    return ans;
+}
+
+//public functions
+bool MATRIX::Invert(MATRIX &Target){
+
+}
+bool MATRIX::IsSquare(MATRIX Target){
+    return Target.col == Target.row;
+}
+int MATRIX::Determinant(MATRIX Target){
+
+}
+void MATRIX::Transpose(){
+    swap(this->row, this->col);
+    float **temp = this->data;
+    this->data = new float*[row];
+    for (int i = 0; i < this->row; i++){
+        this->data[i] = new float[this->row];
+        for (int j = 0; j < this->col; j++){
+            this->data[i][j] = temp[j][i];
+        }
+    }
+    for (int i = 0; i < this->col; i++){
+        delete[]temp[i];
+    }
+    delete[]temp;
+}
+MATRIX MATRIX::ReduceEchelon(MATRIX Target){
+
+}
