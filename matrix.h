@@ -1,16 +1,17 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class MATRIX{
     private:
-        int rowA_colB(float **A, float **B, int row, int col);
+        int rowA_colB(vector<vector<float>> A, vector<vector<float>> B, int row, int col);
+        void simpleOperations(vector<float> &row1, vector<float> &row2);
     public:
         int row;
         int col;
-        float **data;
-        //constructor, destructor
+        vector<vector<float>>data;
+        //constructor
         MATRIX(int _in_row, int _in_col);
-        ~MATRIX();
         //operator
         MATRIX operator+(MATRIX _sec_matrix);
         MATRIX operator-(MATRIX _sec_matrix);
@@ -22,7 +23,7 @@ class MATRIX{
         //functions
         bool Invert(MATRIX &Target);
         bool IsSquare(MATRIX Target);
-        int Determinant(MATRIX Target);
+        bool Determinant(MATRIX Target, float &det);
         void Transpose();
         MATRIX ReduceEchelon(MATRIX Target);
 };
